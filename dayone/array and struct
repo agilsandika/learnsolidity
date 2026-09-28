@@ -1,0 +1,22 @@
+//SPDX-License-Identifier:MIT
+pragma solidity ^0.8.36; //our version
+
+contract SimpleStorage {
+
+    //uint256[] listnumber;
+    struct person{
+        uint256 favoritenumber;
+        string name;
+    }
+
+    person[]public listofpeople;
+
+    function addperson(string memory _name, uint256 _favoritenumber) public  {
+        person memory newperson = person(_favoritenumber,_name);
+        listofpeople.push(newperson);
+    }
+
+    //person public jun = person({favoritenumber:18,name:"jun"});
+    //person public man = person({favoritenumber:17,name:"man"});
+    //person public put = person({favoritenumber:19,name:"put"});
+}
