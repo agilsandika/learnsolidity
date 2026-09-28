@@ -1,1 +1,9 @@
+//SPDX-License-Identifier:MIT
+pragma solidity ^0.8.36; //our version
 
+contract SimpleStorage {
+    bool MyNumber = true;
+    int256 isMyNumber = 77;
+    string MyNumberintext = "seven";
+    bytes32 numbertes = "girls";
+}
