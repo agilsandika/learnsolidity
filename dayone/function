@@ -1,0 +1,16 @@
+//SPDX-License-Identifier:MIT
+pragma solidity ^0.8.36; //our version
+
+contract SimpleStorage {
+    bool MyNumber = true;
+    uint256 isMyNumber; //0
+    string MyNumberintext = "seven";
+    bytes32 numbertes = "girls";
+
+    function store(uint256 _isMyNumber) public {
+        isMyNumber =_isMyNumber;
+    }
+    function retrieve()public view returns(uint256){
+        return isMyNumber;
+    }
+}
