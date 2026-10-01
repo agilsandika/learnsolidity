@@ -1,20 +1,14 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.18;
+pragma solidity ^0.8.36;
 
 import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol"; 
 
-// Why is this a library and not abstract?
-// Why not an interface?
 library PriceConverter {
-    // We could make this public, but then we'd have to deploy it
     function getPrice() internal view returns (uint256) {
-        // Sepolia ETH / USD Address
-        // https://docs.chain.link/data-feeds/price-feeds/addresses
         AggregatorV3Interface priceFeed = AggregatorV3Interface(
             0x694AA1769357215DE4FAC081bf1f309aDC325306
         );
         (, int256 answer, , , ) = priceFeed.latestRoundData();
-        // ETH/USD rate in 18 digit
         return uint256(answer * 10000000000);
     }
 
