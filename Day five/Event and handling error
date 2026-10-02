@@ -1,0 +1,34 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.36;
+
+contract DayFive {
+    // 1. Custom Error (Hemat Gas)
+    error InsufficientBalance(uint256 available, uint256 required);
+
+    // 2. Event Log
+    event Deposited(address indexed sender, uint256 amount);
+    event Withdrawn(address indexed receiver, uint256 amount);
+
+    mapping(address => uint256) public balances;
+
+    // Fungsi Menerima Ether
+    function deposit() public payable {
+        require(msg.value > 0, "Amount must be greater than zero");
+        
+        balances[msg.sender] += msg.value;
+        
+        // Memancarkan Event
+        emit Deposited(msg.sender, msg.value);
+    }
+
+    // Fungsi Penarikan dengan Custom Error
+    function withdraw(uint256 _amount) public {
+        if (balances[msg.sender] < _amount) {
+            revert InsufficientBalance(balances[msg.sender], _amount);
+        }
+
+        balances[msg.sender] -= _amount;
+        
+        emit Withdrawn(msg.sender, _amount);
+    }
+}
