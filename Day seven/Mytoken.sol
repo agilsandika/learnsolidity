@@ -17,3 +17,7 @@ function mint(address to, uint256 amount) public onlyOwner {
         _mint(to, amount * 10 ** decimals());
         emit TokensMinted(to, amount);
     }
+function burn(uint256 amount) public {
+        _burn(msg.sender, amount * 10 ** decimals());
+    }
+}
