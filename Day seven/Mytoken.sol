@@ -7,4 +7,13 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract MyToken is ERC20, Ownable {
 
   event TokensMinted(address indexed to, uint256 amount);
-  
+  constructor(uint256 initialSupply) 
+        ERC20("MyCustomToken", "MCT")
+        Ownable(msg.sender)
+        _mint(msg.sender, initialSupply * 10 ** decimals());
+    }
+
+function mint(address to, uint256 amount) public onlyOwner {
+        _mint(to, amount * 10 ** decimals());
+        emit TokensMinted(to, amount);
+    }
